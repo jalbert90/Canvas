@@ -15,7 +15,7 @@ class Point {
         this.lng = lng;
         // Converts the range of 'lng' from [-180, 180] to [0, canvas.width] and the range of 'lat' from [-90, 90] to [0, canvas.height]
         this.x = (this.lng + 180) * (canvas.width / 360);
-        this.y = (90 - this.lat) * (canvas.width / 180);
+        this.y = (90 - this.lat) * (canvas.height / 180);
         // Plot and label the point
         this.plot();
         this.label(label);
@@ -31,7 +31,7 @@ class Point {
     // Method to label a Point object
     label(text) {
         ctx.font = '12px sans-serif';
-        ctx.fillText(text, this.x + 3, this.y - 3);
+        ctx.fillText(text, this.x, this.y - 3);
     }
 
     // Class method to create an arbitrary label
@@ -78,10 +78,12 @@ class Point {
 }
 
 // Construct Point objects here:
-const point1 = new Point(51.5072, -0.1276, 'London');
-const point2 = new Point(40.7128, -74.0060, 'New York');
-const point3 = new Point(39.9042, 116.4074, 'Beijing');
+const london = new Point(51.5072, -0.1276, 'London');
+const newYork = new Point(40.7128, -74.0060, 'New York');
+const beijing = new Point(39.9042, 116.4074, 'Beijing');
+const sydney = new Point(-33.8668, 151.2093, 'Sydney');
 
 // Call the drawLine method to add a line segment between two points labeled with distance
-Point.drawLine(point1, point2);
-Point.drawLine(point1, point3);
+Point.drawLine(london, newYork);
+Point.drawLine(london, beijing);
+Point.drawLine(newYork, sydney);
